@@ -3,777 +3,918 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Studio INV - Briefing</title>
+<title>Studio INV - Briefing</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
+<style>
 
-  <style>
+body{
+font-family:'DM Sans',sans-serif;
+background:#f5f5f4;
+}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: #f5f5f4;
-    }
+.step{
+display:none;
+}
 
-    .step {
-      display: none;
-    }
+.step.active{
+display:block;
+}
 
-    .step.active {
-      display: block;
-    }
+.card{
+border:2px solid #d6d3d1;
+transition:0.3s;
+}
 
-    .progress-bar {
-      transition: width 0.4s ease;
-    }
+.card.active{
+border-color:#1c1917;
+background:#fafaf9;
+}
 
-    .selected {
-      border-color: #1c1917 !important;
-      background: #fafaf9;
-    }
+.input{
+width:100%;
+border:2px solid #d6d3d1;
+border-radius:14px;
+padding:14px;
+outline:none;
+}
 
-  </style>
+.input:focus{
+border-color:#1c1917;
+}
+
+.progress{
+transition:0.4s;
+}
+
+.palette{
+width:30px;
+height:30px;
+border-radius:999px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="max-w-md mx-auto py-10 px-4">
+<div class="max-w-md mx-auto p-5">
 
-  <!-- HEADER -->
-  <div class="text-center mb-8">
+<div class="text-center mb-8">
 
-    <h1 class="text-3xl font-bold text-stone-800">
-      Studio INV
-    </h1>
+<h1 class="text-3xl font-bold text-stone-900">
+Studio INV
+</h1>
 
-    <p class="text-stone-500 mt-2">
-      Briefing Arquitetônico
-    </p>
+<p class="text-stone-500 mt-1">
+Briefing Arquitetônico
+</p>
 
-  </div>
+</div>
 
-  <!-- PROGRESS -->
-  <div class="w-full h-2 bg-stone-200 rounded-full overflow-hidden mb-8">
+<div class="w-full bg-stone-200 h-2 rounded-full mb-8">
 
-    <div
-      id="progress"
-      class="progress-bar h-full bg-stone-900"
-      style="width:12.5%"
-    ></div>
+<div
+id="progress"
+class="progress bg-stone-900 h-2 rounded-full"
+style="width:12.5%">
+</div>
 
-  </div>
+</div>
 
-  <!-- ETAPA 1 -->
-  <div id="step-1" class="step active">
+<!-- ETAPA 1 -->
 
-    <h2 class="text-xl font-semibold mb-2">
-      Escolha seu estilo
-    </h2>
+<div id="step-1" class="step active">
 
-    <p class="text-stone-500 mb-6">
-      Selecione o estilo que mais combina com você.
-    </p>
+<h2 class="text-2xl font-bold mb-1">
+Escolha seu estilo
+</h2>
 
-    <div class="grid grid-cols-2 gap-4">
+<p class="text-stone-500 mb-5">
+Selecione o estilo que mais combina com você
+</p>
 
-      <div
-        class="style-card border-2 border-stone-300 rounded-2xl overflow-hidden cursor-pointer"
-        data-style="Minimalista"
-      >
+<div class="grid grid-cols-2 gap-4">
 
-        <img
-          src="https://i.ibb.co/FLjF3Df7/2e59ca8b2e6b700be784f44101afe60a.jpg"
-          class="w-full h-40 object-cover"
-        >
+<div
+class="card rounded-2xl overflow-hidden cursor-pointer"
+onclick="selectStyle(this,'Minimalista')">
 
-        <div class="p-3 font-medium">
-          Minimalista
-        </div>
+<img
+src="https://i.ibb.co/FLjF3Df7/2e59ca8b2e6b700be784f44101afe60a.jpg"
+class="w-full h-40 object-cover">
 
-      </div>
+<div class="p-3 font-medium">
+Minimalista
+</div>
 
-      <div
-        class="style-card border-2 border-stone-300 rounded-2xl overflow-hidden cursor-pointer"
-        data-style="Industrial"
-      >
+</div>
 
-        <img
-          src="https://i.ibb.co/0V8XxsL9/c50fa3555a8a5ffa820a84fd663a195e.jpg"
-          class="w-full h-40 object-cover"
-        >
+<div
+class="card rounded-2xl overflow-hidden cursor-pointer"
+onclick="selectStyle(this,'Industrial')">
 
-        <div class="p-3 font-medium">
-          Industrial
-        </div>
+<img
+src="https://i.ibb.co/0V8XxsL9/c50fa3555a8a5ffa820a84fd663a195e.jpg"
+class="w-full h-40 object-cover">
 
-      </div>
+<div class="p-3 font-medium">
+Industrial
+</div>
 
-      <div
-        class="style-card border-2 border-stone-300 rounded-2xl overflow-hidden cursor-pointer"
-        data-style="Clássico"
-      >
+</div>
 
-        <img
-          src="https://i.ibb.co/XrdpxRGv/ced2078ba52f393e94a2d4593942511f.jpg"
-          class="w-full h-40 object-cover"
-        >
+<div
+class="card rounded-2xl overflow-hidden cursor-pointer"
+onclick="selectStyle(this,'Clássico')">
 
-        <div class="p-3 font-medium">
-          Clássico
-        </div>
+<img
+src="https://i.ibb.co/XrdpxRGv/ced2078ba52f393e94a2d4593942511f.jpg"
+class="w-full h-40 object-cover">
 
-      </div>
+<div class="p-3 font-medium">
+Clássico
+</div>
 
-      <div
-        class="style-card border-2 border-stone-300 rounded-2xl overflow-hidden cursor-pointer"
-        data-style="Brasileiro"
-      >
+</div>
 
-        <img
-          src="https://i.ibb.co/21BgBw2z/f748ac93052e38e4b930e7f16370d2ca.jpg"
-          class="w-full h-40 object-cover"
-        >
+<div
+class="card rounded-2xl overflow-hidden cursor-pointer"
+onclick="selectStyle(this,'Arquitetura Brasileira')">
 
-        <div class="p-3 font-medium">
-          Brasileiro
-        </div>
+<img
+src="https://i.ibb.co/21BgBw2z/f748ac93052e38e4b930e7f16370d2ca.jpg"
+class="w-full h-40 object-cover">
 
-      </div>
+<div class="p-3 font-medium">
+Brasileira
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
-  <!-- ETAPA 2 -->
-  <div id="step-2" class="step">
+</div>
 
-    <h2 class="text-xl font-semibold mb-2">
-      Medidas do ambiente
-    </h2>
+<!-- ETAPA 2 -->
 
-    <p class="text-stone-500 mb-6">
-      O ambiente não pode ultrapassar 16m².
-    </p>
+<div id="step-2" class="step">
 
-    <div class="space-y-4">
+<h2 class="text-2xl font-bold mb-1">
+Medidas do ambiente
+</h2>
 
-      <input
-        type="number"
-        id="width"
-        placeholder="Largura"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+<p class="text-stone-500 mb-5">
+Digite as medidas em metros
+</p>
 
-      <input
-        type="number"
-        id="length"
-        placeholder="Comprimento"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+<div class="space-y-4">
 
-      <input
-        type="number"
-        id="height"
-        placeholder="Altura"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+<input
+type="number"
+id="width"
+class="input"
+placeholder="Largura (m)"
+oninput="calculateArea()">
 
-      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+<input
+type="number"
+id="length"
+class="input"
+placeholder="Comprimento (m)"
+oninput="calculateArea()">
 
-        Área calculada:
-        <strong>
-          <span id="area-result">0</span> m²
-        </strong>
+<input
+type="number"
+id="height"
+class="input"
+placeholder="Altura (m)"
+oninput="calculateArea()">
 
-      </div>
+</div>
 
-      <div
-        id="area-warning"
-        class="hidden bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 text-sm"
-      >
+<div class="bg-amber-50 border border-amber-300 rounded-xl p-4 mt-5">
 
-        ⚠ O ambiente ultrapassou 16m².
+<p class="font-semibold">
+Área calculada
+</p>
 
-      </div>
+<p class="text-2xl font-bold mt-1">
+<span id="area-result">0</span> m²
+</p>
 
-    </div>
+<p
+id="area-error"
+class="text-red-600 text-sm mt-2 hidden">
 
-  </div>
+O ambiente não pode ultrapassar 16m²
 
-  <!-- ETAPA 3 -->
-  <div id="step-3" class="step">
+</p>
 
-    <h2 class="text-xl font-semibold mb-2">
-      Faixa de investimento
-    </h2>
+</div>
 
-    <p class="text-stone-500 mb-6">
-      Qual faixa de investimento você imagina?
-    </p>
+</div>
 
-    <div class="space-y-4">
+<!-- ETAPA 3 -->
 
-      <button
-        class="budget-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-budget="2 mil a 4 mil"
-      >
-        <strong>R$ 2 mil a R$ 4 mil</strong>
-      </button>
+<div id="step-3" class="step">
 
-      <button
-        class="budget-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-budget="5 mil a 8 mil"
-      >
-        <strong>R$ 5 mil a R$ 8 mil</strong>
-      </button>
+<h2 class="text-2xl font-bold mb-1">
+Faixa de investimento
+</h2>
 
-      <button
-        class="budget-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-budget="10 mil a 15 mil"
-      >
-        <strong>R$ 10 mil a R$ 15 mil</strong>
-      </button>
+<p class="text-stone-500 mb-5">
+Qual investimento deseja realizar?
+</p>
 
-    </div>
+<div class="space-y-4">
 
-  </div>
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectBudget(this,'2 mil a 4 mil')">
 
-  <!-- ETAPA 4 -->
-  <div id="step-4" class="step">
+2 mil a 4 mil
 
-    <h2 class="text-xl font-semibold mb-2">
-      Quantas pessoas vivem na casa?
-    </h2>
+</div>
 
-    <div class="space-y-4">
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectBudget(this,'5 mil a 8 mil')">
 
-      <input
-        type="number"
-        id="adults"
-        placeholder="Adultos"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+5 mil a 8 mil
 
-      <input
-        type="number"
-        id="children"
-        placeholder="Crianças"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+</div>
 
-      <input
-        type="number"
-        id="elderly"
-        placeholder="Idosos"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectBudget(this,'10 mil a 15 mil')">
 
-    </div>
+10 mil a 15 mil
 
-  </div>
+</div>
 
-  <!-- ETAPA 5 -->
-  <div id="step-5" class="step">
+</div>
 
-    <h2 class="text-xl font-semibold mb-2">
-      Paleta de cores
-    </h2>
+</div>
 
-    <div class="space-y-4">
+<!-- ETAPA 4 -->
 
-      <button
-        class="palette-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-palette="Tons neutros"
-      >
+<div id="step-4" class="step">
 
-        <div class="flex gap-2 mb-3">
-          <div class="w-6 h-6 rounded-full bg-white border"></div>
-          <div class="w-6 h-6 rounded-full bg-stone-200"></div>
-          <div class="w-6 h-6 rounded-full bg-stone-400"></div>
-          <div class="w-6 h-6 rounded-full bg-stone-600"></div>
-          <div class="w-6 h-6 rounded-full bg-stone-800"></div>
-        </div>
+<h2 class="text-2xl font-bold mb-1">
+Quantas pessoas vivem na casa?
+</h2>
 
-        <strong>Tons neutros</strong>
+<p class="text-stone-500 mb-5">
+Essas informações ajudam no planejamento
+</p>
 
-      </button>
+<div class="space-y-4">
 
-      <button
-        class="palette-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-palette="Tons quentes"
-      >
+<input
+type="number"
+id="adults"
+class="input"
+placeholder="Adultos">
 
-        <div class="flex gap-2 mb-3">
-          <div class="w-6 h-6 rounded-full bg-orange-200"></div>
-          <div class="w-6 h-6 rounded-full bg-orange-400"></div>
-          <div class="w-6 h-6 rounded-full bg-orange-500"></div>
-          <div class="w-6 h-6 rounded-full bg-red-500"></div>
-          <div class="w-6 h-6 rounded-full bg-amber-700"></div>
-        </div>
+<input
+type="number"
+id="children"
+class="input"
+placeholder="Crianças">
 
-        <strong>Tons quentes</strong>
+<input
+type="number"
+id="elderly"
+class="input"
+placeholder="Idosos">
 
-      </button>
+</div>
 
-      <button
-        class="palette-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-palette="Tons frios"
-      >
+</div>
 
-        <div class="flex gap-2 mb-3">
-          <div class="w-6 h-6 rounded-full bg-sky-200"></div>
-          <div class="w-6 h-6 rounded-full bg-blue-300"></div>
-          <div class="w-6 h-6 rounded-full bg-cyan-500"></div>
-          <div class="w-6 h-6 rounded-full bg-blue-600"></div>
-          <div class="w-6 h-6 rounded-full bg-slate-700"></div>
-        </div>
+<!-- ETAPA 5 -->
 
-        <strong>Tons frios</strong>
+<div id="step-5" class="step">
 
-      </button>
+<h2 class="text-2xl font-bold mb-1">
+Paleta de cores
+</h2>
 
-      <button
-        class="palette-btn w-full border-2 border-stone-300 p-4 rounded-xl text-left"
-        data-palette="Tons terrosos"
-      >
+<p class="text-stone-500 mb-5">
+Escolha sua paleta favorita
+</p>
 
-        <div class="flex gap-2 mb-3">
-          <div class="w-6 h-6 rounded-full bg-yellow-700"></div>
-          <div class="w-6 h-6 rounded-full bg-amber-800"></div>
-          <div class="w-6 h-6 rounded-full bg-orange-900"></div>
-          <div class="w-6 h-6 rounded-full bg-stone-700"></div>
-          <div class="w-6 h-6 rounded-full bg-neutral-900"></div>
-        </div>
+<div class="space-y-4">
 
-        <strong>Tons terrosos</strong>
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectPalette(this,'Tons neutros')">
 
-      </button>
+<div class="flex gap-2 mb-3">
 
-    </div>
+<div class="palette bg-neutral-100"></div>
+<div class="palette bg-neutral-300"></div>
+<div class="palette bg-neutral-500"></div>
+<div class="palette bg-neutral-700"></div>
+<div class="palette bg-neutral-900"></div>
 
-  </div>
+</div>
 
-  <!-- ETAPA 6 -->
-  <div id="step-6" class="step">
+<h3 class="font-semibold">
+Tons neutros
+</h3>
 
-    <h2 class="text-xl font-semibold mb-2">
-      Seu sonho para o ambiente
-    </h2>
+<p class="text-sm text-stone-500 mt-1">
+Elegante, clean e sofisticado
+</p>
 
-    <textarea
-      id="dream-text"
-      maxlength="500"
-      rows="6"
-      placeholder="Conte como imagina seu ambiente ideal..."
-      class="w-full p-4 rounded-xl border border-stone-300"
-    ></textarea>
+</div>
 
-    <p class="text-sm text-stone-500 mt-2">
-      <span id="char-count">0</span>/500
-    </p>
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectPalette(this,'Tons quentes')">
 
-  </div>
+<div class="flex gap-2 mb-3">
 
-  <!-- ETAPA 7 -->
-  <div id="step-7" class="step">
+<div class="palette bg-orange-200"></div>
+<div class="palette bg-orange-400"></div>
+<div class="palette bg-red-400"></div>
+<div class="palette bg-amber-700"></div>
+<div class="palette bg-yellow-700"></div>
 
-    <h2 class="text-xl font-semibold mb-2">
-      Foto do ambiente
-    </h2>
+</div>
 
-    <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6">
-
-      <h3 class="font-semibold text-blue-900 mb-3">
-        Como tirar uma boa foto
-      </h3>
+<h3 class="font-semibold">
+Tons quentes
+</h3>
 
-      <ul class="space-y-2 text-sm text-blue-800">
-        <li>✓ Tire a foto durante o dia</li>
-        <li>✓ Use iluminação natural</li>
-        <li>✓ Mostre o ambiente inteiro</li>
-        <li>✓ Tire a foto de um canto</li>
-        <li>✓ Evite fotos tremidas</li>
-      </ul>
+<p class="text-sm text-stone-500 mt-1">
+Aconchegante e acolhedor
+</p>
 
-    </div>
+</div>
 
-    <label class="border-2 border-dashed border-stone-300 rounded-2xl p-10 flex flex-col items-center justify-center cursor-pointer text-center block">
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectPalette(this,'Tons frios')">
 
-      <input
-        type="file"
-        id="photo-input"
-        accept="image/*"
-        class="hidden"
-      >
+<div class="flex gap-2 mb-3">
 
-      <i
-        data-lucide="image"
-        class="w-10 h-10 mb-3 text-stone-400"
-      ></i>
+<div class="palette bg-blue-200"></div>
+<div class="palette bg-cyan-300"></div>
+<div class="palette bg-sky-400"></div>
+<div class="palette bg-blue-700"></div>
+<div class="palette bg-indigo-900"></div>
 
-      <span class="font-medium">
-        Clique para enviar sua foto
-      </span>
+</div>
 
-      <span
-        id="photo-name"
-        class="text-green-600 mt-3 text-sm"
-      ></span>
+<h3 class="font-semibold">
+Tons frios
+</h3>
 
-    </label>
+<p class="text-sm text-stone-500 mt-1">
+Moderno e tranquilo
+</p>
 
-  </div>
+</div>
 
-  <!-- ETAPA 8 -->
-  <div id="step-8" class="step">
+<div
+class="card rounded-xl p-4 cursor-pointer"
+onclick="selectPalette(this,'Tons terrosos')">
 
-    <h2 class="text-xl font-semibold mb-6">
-      Seus dados
-    </h2>
+<div class="flex gap-2 mb-3">
 
-    <div class="space-y-4">
+<div class="palette bg-amber-200"></div>
+<div class="palette bg-orange-300"></div>
+<div class="palette bg-yellow-700"></div>
+<div class="palette bg-amber-900"></div>
+<div class="palette bg-stone-800"></div>
 
-      <input
-        type="text"
-        id="name"
-        placeholder="Nome completo"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+</div>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Email"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+<h3 class="font-semibold">
+Tons terrosos
+</h3>
 
-      <input
-        type="tel"
-        id="phone"
-        placeholder="Telefone"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+<p class="text-sm text-stone-500 mt-1">
+Natural, sofisticado e acolhedor
+</p>
 
-      <input
-        type="text"
-        id="city"
-        placeholder="Cidade"
-        class="w-full p-4 rounded-xl border border-stone-300"
-      >
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
-  <!-- BOTÕES -->
-  <div class="flex gap-3 mt-8">
+<!-- ETAPA 6 -->
 
-    <button
-      onclick="previousStep()"
-      class="flex-1 border border-stone-800 text-stone-800 py-3 rounded-xl"
-    >
-      Anterior
-    </button>
+<div id="step-6" class="step">
 
-    <button
-      id="next-btn"
-      onclick="nextStep()"
-      class="flex-1 bg-stone-900 text-white py-3 rounded-xl"
-    >
-      Próximo
-    </button>
+<h2 class="text-2xl font-bold mb-1">
+Foto do ambiente
+</h2>
 
-  </div>
+<p class="text-stone-500 mb-5">
+A foto é obrigatória
+</p>
+
+<div class="bg-blue-50 border border-blue-300 rounded-xl p-4 mb-5">
+
+<h3 class="font-semibold mb-3">
+Como tirar uma boa foto:
+</h3>
+
+<ul class="text-sm text-blue-900 space-y-2">
+
+<li>✓ Tire durante o dia</li>
+<li>✓ Pegue o máximo do ambiente</li>
+<li>✓ Evite objetos bloqueando</li>
+<li>✓ Ambiente organizado</li>
+<li>✓ Foto bem iluminada</li>
+
+</ul>
+
+</div>
+
+<input
+type="file"
+id="photo-input"
+class="input"
+accept="image/*">
+
+<p
+id="photo-name"
+class="text-green-600 text-sm mt-3">
+</p>
+
+</div>
+
+<!-- ETAPA 7 -->
+
+<div id="step-7" class="step">
+
+<h2 class="text-2xl font-bold mb-1">
+Seu sonho para este ambiente
+</h2>
+
+<p class="text-stone-500 mb-5">
+Conte seus desejos e inspirações
+</p>
+
+<textarea
+id="dream"
+rows="6"
+maxlength="500"
+class="input"
+placeholder="Descreva seu sonho..."></textarea>
+
+</div>
+
+<!-- ETAPA 8 -->
+
+<div id="step-8" class="step">
+
+<h2 class="text-2xl font-bold mb-1">
+Seus dados
+</h2>
+
+<p class="text-stone-500 mb-5">
+Para entrarmos em contato
+</p>
+
+<div class="space-y-4">
+
+<input
+type="text"
+id="name"
+class="input"
+placeholder="Nome completo">
+
+<input
+type="email"
+id="email"
+class="input"
+placeholder="Seu email">
+
+<input
+type="tel"
+id="phone"
+class="input"
+placeholder="Telefone">
+
+<input
+type="text"
+id="city"
+class="input"
+placeholder="Cidade">
+
+</div>
+
+</div>
+
+<div class="flex gap-3 mt-8">
+
+<button
+onclick="prevStep()"
+class="w-full border-2 border-stone-900 rounded-xl py-3 font-semibold">
+
+Voltar
+
+</button>
+
+<button
+onclick="nextStep()"
+id="nextBtn"
+class="w-full bg-stone-900 text-white rounded-xl py-3 font-semibold">
+
+Próximo
+
+</button>
+
+</div>
 
 </div>
 
 <script>
 
-emailjs.init('4Bz04IMwtWMKrIxZ2');
+emailjs.init("4Bz04IMwtWMKrIxZ2");
 
 let currentStep = 1;
 
+let uploadingPhoto = false;
+
+const totalSteps = 8;
+
 const formData = {
 
-  style: '',
-  width: '',
-  length: '',
-  height: '',
-  area: 0,
-  budget: '',
-  adults: 0,
-  children: 0,
-  elderly: 0,
-  palette: '',
-  dream: '',
-  photo: '',
-  name: '',
-  email: '',
-  phone: '',
-  city: ''
+style:'',
+width:'',
+length:'',
+height:'',
+area:'',
+budget:'',
+adults:'',
+children:'',
+elderly:'',
+palette:'',
+photo:'',
+dream:'',
+name:'',
+email:'',
+phone:'',
+city:''
 
 };
 
-function updateProgress() {
+function updateProgress(){
 
-  const progress =
-    (currentStep / 8) * 100;
+const progress =
+(currentStep / totalSteps) * 100;
 
-  document.getElementById('progress').style.width =
-    progress + '%';
+document.getElementById('progress')
+.style.width = progress + '%';
+
 }
 
-function showStep(step) {
+function showStep(step){
 
-  document.querySelectorAll('.step').forEach(item => {
-    item.classList.remove('active');
-  });
+document
+.querySelectorAll('.step')
+.forEach(s => s.classList.remove('active'));
 
-  document
-    .getElementById(`step-${step}`)
-    .classList.add('active');
+document
+.getElementById(`step-${step}`)
+.classList.add('active');
 
-  currentStep = step;
+currentStep = step;
 
-  updateProgress();
+updateProgress();
 
-  document.getElementById('next-btn').innerText =
-    step === 8 ? 'Enviar' : 'Próximo';
+if(step === totalSteps){
+
+document.getElementById('nextBtn')
+.innerText = 'Enviar';
+
+}else{
+
+document.getElementById('nextBtn')
+.innerText = 'Próximo';
+
 }
 
-function nextStep() {
-
-  if (currentStep === 1 && !formData.style) {
-    alert('Escolha um estilo.');
-    return;
-  }
-
-  if (currentStep === 2 && formData.area > 16) {
-    alert('O ambiente não pode ultrapassar 16m².');
-    return;
-  }
-
-  if (currentStep === 3 && !formData.budget) {
-    alert('Escolha uma faixa de investimento.');
-    return;
-  }
-
-  if (currentStep === 5 && !formData.palette) {
-    alert('Escolha uma paleta.');
-    return;
-  }
-
-  if (currentStep === 7 && !formData.photo) {
-    alert('Envie uma foto.');
-    return;
-  }
-
-  if (currentStep === 8) {
-    submitForm();
-    return;
-  }
-
-  showStep(currentStep + 1);
 }
 
-function previousStep() {
+function nextStep(){
 
-  if (currentStep > 1) {
-    showStep(currentStep - 1);
-  }
+if(currentStep === 1 && !formData.style){
+alert('Selecione um estilo');
+return;
 }
 
-function calculateArea() {
+if(currentStep === 2){
 
-  const width =
-    parseFloat(document.getElementById('width').value) || 0;
+if(
+!formData.width ||
+!formData.length ||
+!formData.height
+){
+alert('Preencha todas as medidas');
+return;
+}
 
-  const length =
-    parseFloat(document.getElementById('length').value) || 0;
+if(formData.area > 16){
+alert('O ambiente não pode ultrapassar 16m²');
+return;
+}
 
-  const area = width * length;
+}
 
-  formData.width = width;
-  formData.length = length;
-  formData.area = area;
+if(currentStep === 3 && !formData.budget){
+alert('Selecione a faixa de investimento');
+return;
+}
 
-  document.getElementById('area-result').innerText =
-    area.toFixed(2);
+if(currentStep === 5 && !formData.palette){
+alert('Escolha uma paleta');
+return;
+}
 
-  const warning =
-    document.getElementById('area-warning');
+if(currentStep === 6){
 
-  if (area > 16) {
-    warning.classList.remove('hidden');
-  } else {
-    warning.classList.add('hidden');
-  }
+if(uploadingPhoto){
+alert('Aguarde a imagem terminar de enviar');
+return;
+}
+
+if(!formData.photo){
+alert('A foto do ambiente é obrigatória');
+return;
+}
+
+}
+
+if(currentStep < totalSteps){
+showStep(currentStep + 1);
+}else{
+submitForm();
+}
+
+}
+
+function prevStep(){
+
+if(currentStep > 1){
+showStep(currentStep - 1);
+}
+
+}
+
+function selectStyle(el,value){
+
+document
+.querySelectorAll('#step-1 .card')
+.forEach(c => c.classList.remove('active'));
+
+el.classList.add('active');
+
+formData.style = value;
+
+}
+
+function calculateArea(){
+
+const width =
+parseFloat(document.getElementById('width').value) || 0;
+
+const length =
+parseFloat(document.getElementById('length').value) || 0;
+
+const height =
+parseFloat(document.getElementById('height').value) || 0;
+
+const area = width * length;
+
+document.getElementById('area-result')
+.innerText = area.toFixed(2);
+
+formData.width = width;
+formData.length = length;
+formData.height = height;
+formData.area = area;
+
+if(area > 16){
+
+document
+.getElementById('area-error')
+.classList.remove('hidden');
+
+}else{
+
+document
+.getElementById('area-error')
+.classList.add('hidden');
+
+}
+
+}
+
+function selectBudget(el,value){
+
+document
+.querySelectorAll('#step-3 .card')
+.forEach(c => c.classList.remove('active'));
+
+el.classList.add('active');
+
+formData.budget = value;
+
+}
+
+function selectPalette(el,value){
+
+document
+.querySelectorAll('#step-5 .card')
+.forEach(c => c.classList.remove('active'));
+
+el.classList.add('active');
+
+formData.palette = value;
+
 }
 
 document
-  .getElementById('width')
-  .addEventListener('input', calculateArea);
+.getElementById('photo-input')
+.addEventListener('change', async function(event){
 
-document
-  .getElementById('length')
-  .addEventListener('input', calculateArea);
+const file = event.target.files[0];
 
-document.querySelectorAll('.style-card').forEach(card => {
+if(!file) return;
 
-  card.addEventListener('click', () => {
+uploadingPhoto = true;
 
-    document.querySelectorAll('.style-card').forEach(c => {
-      c.classList.remove('selected');
-    });
+const photoText =
+document.getElementById('photo-name');
 
-    card.classList.add('selected');
+photoText.innerText = 'Enviando imagem...';
 
-    formData.style = card.dataset.style;
+const data = new FormData();
 
-  });
+data.append('file', file);
+
+data.append('upload_preset', 'studioinv');
+
+try{
+
+const response = await fetch(
+
+'https://api.cloudinary.com/v1_1/dqlvxtvno/image/upload',
+
+{
+method:'POST',
+body:data
+}
+
+);
+
+const result = await response.json();
+
+console.log(result);
+
+if(result.secure_url){
+
+formData.photo = result.secure_url;
+
+photoText.innerHTML =
+'✓ Imagem enviada com sucesso';
+
+}else{
+
+photoText.innerHTML =
+'Erro ao enviar imagem';
+
+alert('Erro no Cloudinary. Verifique upload preset.');
+
+}
+
+uploadingPhoto = false;
+
+}catch(error){
+
+console.error(error);
+
+uploadingPhoto = false;
+
+photoText.innerHTML =
+'Erro ao enviar imagem';
+
+alert('Erro ao enviar imagem');
+
+}
 
 });
 
-document.querySelectorAll('.budget-btn').forEach(btn => {
+async function submitForm(){
 
-  btn.addEventListener('click', () => {
+formData.adults =
+document.getElementById('adults').value;
 
-    document.querySelectorAll('.budget-btn').forEach(b => {
-      b.classList.remove('selected');
-    });
+formData.children =
+document.getElementById('children').value;
 
-    btn.classList.add('selected');
+formData.elderly =
+document.getElementById('elderly').value;
 
-    formData.budget = btn.dataset.budget;
+formData.dream =
+document.getElementById('dream').value;
 
-  });
+formData.name =
+document.getElementById('name').value;
 
-});
+formData.email =
+document.getElementById('email').value;
 
-document.querySelectorAll('.palette-btn').forEach(btn => {
+formData.phone =
+document.getElementById('phone').value;
 
-  btn.addEventListener('click', () => {
+formData.city =
+document.getElementById('city').value;
 
-    document.querySelectorAll('.palette-btn').forEach(b => {
-      b.classList.remove('selected');
-    });
+if(
+!formData.name ||
+!formData.email ||
+!formData.phone ||
+!formData.city
+){
+alert('Preencha todos os dados');
+return;
+}
 
-    btn.classList.add('selected');
+try{
 
-    formData.palette = btn.dataset.palette;
+await emailjs.send(
 
-  });
+'service_1gdvc4h',
 
-});
+'template_k1tl7ci',
 
-document
-  .getElementById('dream-text')
-  .addEventListener('input', function() {
+{
 
-    formData.dream = this.value;
+style: formData.style,
 
-    document.getElementById('char-count').innerText =
-      this.value.length;
+width: formData.width,
+length: formData.length,
+height: formData.height,
 
-  });
+area: formData.area,
 
-document
-  .getElementById('photo-input')
-  .addEventListener('change', function(event) {
+budget: formData.budget,
 
-    const file = event.target.files[0];
+adults: formData.adults,
+children: formData.children,
+elderly: formData.elderly,
 
-    if (!file) return;
+palette: formData.palette,
 
-    formData.photo = file.name;
+dream: formData.dream,
 
-    document.getElementById('photo-name').innerText =
-      '✓ ' + file.name;
+photo: formData.photo,
 
-  });
-
-async function submitForm() {
-
-  formData.name =
-    document.getElementById('name').value;
-
-  formData.email =
-    document.getElementById('email').value;
-
-  formData.phone =
-    document.getElementById('phone').value;
-
-  formData.city =
-    document.getElementById('city').value;
-
-  formData.adults =
-    document.getElementById('adults').value;
-
-  formData.children =
-    document.getElementById('children').value;
-
-  formData.elderly =
-    document.getElementById('elderly').value;
-
-  try {
-
-    await emailjs.send(
-
-      'service_1gdvc4h',
-
-      'template_k1tl7ci',
-
-      {
-        style: formData.style,
-        area: formData.area,
-        budget: formData.budget,
-        adults: formData.adults,
-        children: formData.children,
-        elderly: formData.elderly,
-        palette: formData.palette,
-        dream: formData.dream,
-        photo: formData.photo,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        city: formData.city
-      }
-
-    );
-
-    alert('Briefing enviado com sucesso!');
-
-    location.reload();
-
-  } catch (error) {
-
-    console.error(error);
-
-    alert('Erro ao enviar formulário.');
-
-  }
+name: formData.name,
+email: formData.email,
+phone: formData.phone,
+city: formData.city
 
 }
 
-lucide.createIcons();
+);
+
+alert('Briefing enviado com sucesso!');
+
+location.reload();
+
+}catch(error){
+
+console.error(error);
+
+alert('Erro ao enviar briefing');
+
+}
+
+}
 
 </script>
 
 </body>
+
 </html>
